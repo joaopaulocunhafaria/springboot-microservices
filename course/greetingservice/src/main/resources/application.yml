@@ -1,6 +1,14 @@
+server:
+  port: 8080
 spring:
   application:
     name: greetingservice
+  config:
+    import:  optional:configserver:http://localhost:8888/
+  cloud:
+    config: 
+      profile: qa  
+    
 management:
   endpoints:
     web:

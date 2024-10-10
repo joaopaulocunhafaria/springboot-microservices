@@ -8,5 +8,5 @@ management:
         include:
         - '*'
 greetingservice:
-  grettinng: "Hello,"
+  greeting: "Hello,"
   default-value: "Qa!"

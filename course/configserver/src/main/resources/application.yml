@@ -3,6 +3,10 @@ server:
 spring:
   application:
     name: configserver
-  profiles:
-    active:
-    - native
+  cloud: 
+    config: 
+      server: 
+        git:
+          uri: https://github.com/joaopaulocunhafaria/springboot-microservices
+          search-paths:
+          - 'config*'
