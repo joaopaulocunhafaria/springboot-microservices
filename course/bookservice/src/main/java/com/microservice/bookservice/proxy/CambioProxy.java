@@ -9,7 +9,7 @@ import com.microservice.bookservice.response.Cambio;
 @FeignClient(name = "cambioservice", url = "localhost:8000")
 public interface CambioProxy {
  
-    @GetMapping(value = "/cambio-service/{amount}/{from}/{to}")
+    @GetMapping(value = "/cambioservice/{amount}/{from}/{to}")
     public Cambio getCambio(
             @PathVariable("amount") Double amount,
             @PathVariable("from") String from,

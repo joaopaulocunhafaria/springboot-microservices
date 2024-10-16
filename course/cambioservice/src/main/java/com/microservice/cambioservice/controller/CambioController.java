@@ -13,7 +13,7 @@ import com.microservice.cambioservice.models.Cambio;
 import com.microservice.cambioservice.repository.CambioRepository;
 
 @RestController
-@RequestMapping("cambio-service")
+@RequestMapping("cambioservice")
 public class CambioController {
 
     @Autowired
