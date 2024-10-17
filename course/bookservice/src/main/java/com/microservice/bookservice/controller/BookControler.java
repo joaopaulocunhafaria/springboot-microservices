@@ -12,6 +12,8 @@ import com.microservice.bookservice.proxy.CambioProxy;
 import com.microservice.bookservice.repository.BookRepository;
 import com.microservice.bookservice.response.Cambio;
 
+import io.github.resilience4j.retry.annotation.Retry;
+
 @RestController
 @RequestMapping("bookservice")
 public class BookControler {
@@ -26,6 +28,8 @@ public class BookControler {
     private CambioProxy proxy;
 
     @GetMapping(value = "/{id}/{currency}")
+
+    @Retry(name = "findbook")
     public Book findBook(
             @PathVariable("id") Long id,
             @PathVariable("currency") String currency) {
