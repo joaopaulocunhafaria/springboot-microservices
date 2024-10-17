@@ -10,7 +10,8 @@ resilience4j:
       foobar : 
         max-attempts: 10
       findbook: 
-        max-attempts: 5 
+        max-attempts: 5
+        wait-duration: 10s 
       
 
 
