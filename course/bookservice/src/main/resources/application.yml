@@ -11,9 +11,7 @@ resilience4j:
         max-attempts: 10
       findbook: 
         max-attempts: 5
-        wait-duration: 10s 
-      
-
+        wait-duration: 2s 
 
 spring: 
   application:
@@ -35,4 +33,6 @@ spring:
     - book
     user: joao
     password: min3cr3ft
-      
+springdoc:
+  api-docs:
+    path: bookservice/v3/api-docs      

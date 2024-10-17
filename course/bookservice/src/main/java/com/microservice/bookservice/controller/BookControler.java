@@ -15,8 +15,13 @@ import com.microservice.bookservice.proxy.CambioProxy;
 import com.microservice.bookservice.repository.BookRepository;
 import com.microservice.bookservice.response.Cambio;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
+
+@Tag(name = "Book Endpoint")
 @RestController
 @RequestMapping("bookservice")
 public class BookControler {
@@ -32,14 +37,16 @@ public class BookControler {
     @Autowired
     private CambioProxy proxy;
 
+    
+    @Operation(summary = "Find your book passing the ID as search key")
     @GetMapping(value = "/{id}/{currency}")
-
     @Retry(name = "findbook", fallbackMethod = "returnDefaultBook")
+    @CircuitBreaker(name = "findbook", fallbackMethod = "returnDefaultBook")
     public Book findBook(
             @PathVariable("id") Long id,
             @PathVariable("currency") String currency) {
         
-        //Forcando erro com URL invalida para testar fallbackmethod        
+        //Forcing error using wrong URL to force the use of fallbackMethod            
         var response = new RestTemplate().getForEntity("http://localhost:8000/foobar", String.class);
 
         Book book = repository.findById(id).orElseThrow(() -> new RuntimeException("Book not found"));
