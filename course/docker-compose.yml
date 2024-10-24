@@ -1,0 +1,65 @@
+version: '3.9'
+
+
+  
+services:
+    
+
+  api-gateway:
+    image: joaopaulocunhafaria/api-gateway:0.0.1-SNAPSHOT
+    ports:
+      - 8765:8765
+    depends_on: 
+      - namingserver
+    environment:
+       SPRING.ZIPKIN.BASEURL:  http://zipkin:9411/
+       EUREKA.CLIENT.SERVICEURL.DEFAULTZONE:  http://namingserver:8761/eureka
+    networks:
+      - joao-network 
+     
+
+  zipkin:
+    image: openzipkin/zipkin:2.23.2
+    ports:
+      - 9411:9411
+    networks:
+      - joao-network  
+ 
+  cambio-db:
+    image: postgres:17.0-bookworm
+    ports:
+      - "5431:5432"
+    restart: always
+    shm_size: 128mb  # Limite de memória compartilhada
+    environment:
+      POSTGRES_DB: cambio_service       
+      POSTGRES_PASSWORD: password    
+    networks:
+      - joao-network 
+
+  
+  book-db:
+    image: postgres:17.0-bookworm
+    ports:
+      - "5430:5432"
+    restart: always
+    shm_size: 128mb  # Limite de memória compartilhada
+    environment:
+      POSTGRES_DB: book_service      # Define o nome do usuário
+      POSTGRES_PASSWORD: password    # Define a senha do root (não nativa no Postgres, mas pode ser usado para definir o usuário padrão)
+    networks:
+      - joao-network 
+          
+
+
+
+  namingserver:
+    image: joaopaulocunhafaria/namingserver:0.0.1-SNAPSHOT
+    ports:
+      - 8761:8761
+    networks:
+      - joao-network
+
+networks:
+  joao-network:
+    driver: bridge
