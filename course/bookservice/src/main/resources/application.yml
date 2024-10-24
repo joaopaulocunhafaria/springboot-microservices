@@ -14,13 +14,16 @@ resilience4j:
         wait-duration: 2s 
 
 spring: 
+  cloud:
+    compatibility-verifier:
+      enabled: false
   application:
     name: bookservice
   datasource:
     driver-class-name: org.postgresql.Driver
-    username: joao
-    password: min3cr3ft
-    url: jdbc:postgresql://localhost:5432/book_service
+    username: postgres
+    password: password
+    url: jdbc:postgresql://localhost:5430/book_service
   jpa:
     show-sql: true
     generate-ddl: true
@@ -28,11 +31,16 @@ spring:
       ddl-auto: update
     database: postgresql
   flyway:
-    url: jdbc:postgresql://localhost:5432/book_service
+    url: jdbc:postgresql://localhost:5430/book_service
     schemas: 
     - book
-    user: joao
-    password: min3cr3ft
+    user: postgres
+    password: password
+  sleuth:
+    sampler:
+      probability: 1.0
+  zipkin:
+    base-url: http://localhost:9411/
 springdoc:
   api-docs:
     path: bookservice/v3/api-docs      
