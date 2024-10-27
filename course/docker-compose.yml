@@ -1,9 +1,13 @@
 version: '3.9'
-
-
   
 services:
-    
+  
+  namingserver:
+    image: joaopaulocunhafaria/namingserver:0.0.1-SNAPSHOT
+    ports:
+      - 8761:8761
+    networks:
+      - joao-network
 
   api-gateway:
     image: joaopaulocunhafaria/api-gateway:0.0.1-SNAPSHOT
@@ -17,13 +21,46 @@ services:
     networks:
       - joao-network 
      
-
-  zipkin:
-    image: openzipkin/zipkin:2.23.2
+  cambio-service:
+    image: joaopaulocunhafaria/cambioservice:0.0.1-SNAPSHOT
     ports:
-      - 9411:9411
+      - 8000:8000
+    depends_on: 
+      - namingserver
+      - cambio-db
+    environment:
+       SPRING.ZIPKIN.BASEURL:  http://zipkin:9411/
+       EUREKA.CLIENT.SERVICEURL.DEFAULTZONE:  http://namingserver:8761/eureka
+       SPRING.DATASOURCE.URL: jdbc:postgresql://locahost:5431/cambio_service 
+       SPRING.FLYWAY.URL: jdbc:postgresql://locahost:5431/cambio_service 
+       SPRING.DATASOURCE.USERNAME: postgres 
+       SPRING.DATASOURCE.PASSWORD: password
+       SPRING.FLYWAY.USER: postgres 
+       SPRING.FLYWAY.PASSWORD: password
+       
     networks:
-      - joao-network  
+      - joao-network 
+  
+  
+  book-service:
+    image: joaopaulocunhafaria/bookservice:0.0.1-SNAPSHOT
+    ports:
+      - 8100:8100
+    depends_on: 
+      - namingserver
+      - book-db
+    environment:
+       SPRING.ZIPKIN.BASEURL:  http://zipkin:9411/
+       EUREKA.CLIENT.SERVICEURL.DEFAULTZONE:  http://namingserver:8761/eureka
+       SPRING.DATASOURCE.URL: jdbc:postgresql://locahost:5430/book_service 
+       SPRING.FLYWAY.URL: jdbc:postgresql://locahost:5430/book_service 
+       SPRING.DATASOURCE.USERNAME: postgres 
+       SPRING.DATASOURCE.PASSWORD: password
+       SPRING.FLYWAY.USER: postgres 
+       SPRING.FLYWAY.PASSWORD: password 
+    networks:
+      - joao-network 
+
  
   cambio-db:
     image: postgres:17.0-bookworm
@@ -49,16 +86,14 @@ services:
       POSTGRES_PASSWORD: password    # Define a senha do root (não nativa no Postgres, mas pode ser usado para definir o usuário padrão)
     networks:
       - joao-network 
-          
 
-
-
-  namingserver:
-    image: joaopaulocunhafaria/namingserver:0.0.1-SNAPSHOT
+  zipkin:
+    image: openzipkin/zipkin:2.23.2
     ports:
-      - 8761:8761
+      - 9411:9411
     networks:
-      - joao-network
+      - joao-network  
+
 
 networks:
   joao-network:
