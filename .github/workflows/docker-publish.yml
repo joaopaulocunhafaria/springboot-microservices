@@ -31,7 +31,7 @@ jobs:
            distribution: adopt
     
       - name: Build Naming Server Docker Container 
-        working-directory: ./course/namingserver
+        working-directory: course/namingserver
         run: mvn spring-boot:build-image -DskipTest
       
       - name: Build Api Gateway Docker Container 
