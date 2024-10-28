@@ -1,0 +1,54 @@
+name: Docker Coutinus Integration with Github
+ 
+
+on:
+  schedule:
+    - cron: '20 6 * * *'
+  push:
+    branches: [ "main" ]
+    # Publish semver tags as releases.
+    tags: [ 'v*.*.*' ]
+  pull_request:
+    branches: [ "main" ]
+ 
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Login into DockerHub
+        uses: docker/login-action@v3.3.0
+        with:
+           username:  ${{ secrets.DOCKER_HUB_USER}}
+           password: ${{ secrets.DOCKER_HUB_PASSWORD}}
+        
+      - name: Setup Java SDK 
+        uses: actions/setup-java@v4.5.0
+        with:
+           java-version: 17
+           distribution: adopt
+    
+      - name: Build Naming Server Docker Container 
+        working-directory: course/namingserver
+        run: mvn spring-boot:build-image -DskipTest
+      
+      - name: Build Api Gateway Docker Container 
+        working-directory: ./course/api-gateway
+        run: mvn spring-boot:build-image -DskipTest  
+      
+      - name: Build Book Microservice Docker Container 
+        working-directory: ./course/bookservice
+        run: mvn spring-boot:build-image -DskipTest
+ 
+      - name: Build Cambio Microservice Docker Container 
+        working-directory: ./course/cambioservice
+        run: mvn spring-boot:build-image -DskipTest
+      
+      - name: Docker Compose Build 
+        working-directory: ./course
+        run: docker compose build
+
+ 
+ 
