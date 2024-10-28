@@ -10,8 +10,8 @@ spring:
     name: cambioservice
   datasource:
     driver-class-name: org.postgresql.Driver
-    username: postgres
-    password: password
+    username: joao
+    password: min3cr3ft
     url: jdbc:postgresql://localhost:5431/cambio_service
   jpa:
     show-sql: true
@@ -21,8 +21,8 @@ spring:
     database: postgresql
   flyway:
     url: jdbc:postgresql://localhost:5431/cambio_service
-    user: postgres
-    password: password
+    user: joao
+    password: min3cr3ft
 
 springdoc:
   api-docs:

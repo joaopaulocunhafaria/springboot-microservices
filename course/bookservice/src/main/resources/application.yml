@@ -21,9 +21,9 @@ spring:
     name: bookservice
   datasource:
     driver-class-name: org.postgresql.Driver
-    username: postgres
-    password: password
-    url: jdbc:postgresql://localhost:5430/book_service
+    username: joao
+    password: min3cr3ft
+    url: jdbc:postgresql://localhost:5432/book_service
   jpa:
     show-sql: true
     generate-ddl: true
@@ -31,11 +31,11 @@ spring:
       ddl-auto: update
     database: postgresql
   flyway:
-    url: jdbc:postgresql://localhost:5430/book_service
+    url: jdbc:postgresql://localhost:5432/book_service
     schemas: 
     - book
-    user: postgres
-    password: password
+    user: joao
+    password: min3cr3ft
   sleuth:
     sampler:
       probability: 1.0
