@@ -28,7 +28,7 @@ jobs:
         uses: actions/setup-java@v4.5.0
         with:
            java-version: 17
-           distribuition: adopt
+           distribution: adopt
     
       - name: Build Naming Server Docker Container 
         working-directory: ./course/namingserver
