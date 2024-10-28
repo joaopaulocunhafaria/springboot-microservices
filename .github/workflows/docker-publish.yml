@@ -1,0 +1,29 @@
+name: Docker Coutinus Integration with Github
+ 
+
+on:
+  schedule:
+    - cron: '20 6 * * *'
+  push:
+    branches: [ "main" ]
+    # Publish semver tags as releases.
+    tags: [ 'v*.*.*' ]
+  pull_request:
+    branches: [ "main" ]
+ 
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Login into DockerHub
+        uses: docker/login-action@v3.3.0
+        with:
+           username:  ${{ secrets.DOCKER_HUB_USER}}
+           password: ${{ secrets.DOCKER_HUB_PASSWORD}}
+         
+
+
+ 
