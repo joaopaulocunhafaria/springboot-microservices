@@ -1,5 +1,5 @@
 version: '3.9'
-  
+
 services:
   
   namingserver:
@@ -31,8 +31,8 @@ services:
     environment:
        SPRING.ZIPKIN.BASEURL:  http://zipkin:9411/
        EUREKA.CLIENT.SERVICEURL.DEFAULTZONE:  http://namingserver:8761/eureka
-       SPRING.DATASOURCE.URL: jdbc:postgresql://locahost:5431/cambio_service 
-       SPRING.FLYWAY.URL: jdbc:postgresql://locahost:5431/cambio_service 
+       SPRING.DATASOURCE.URL: jdbc:postgresql://cambio-db:5432/cambio_service 
+       SPRING.FLYWAY.URL: jdbc:postgresql://cambio-db:5432/cambio_service 
        SPRING.DATASOURCE.USERNAME: postgres 
        SPRING.DATASOURCE.PASSWORD: password
        SPRING.FLYWAY.USER: postgres 
@@ -52,8 +52,8 @@ services:
     environment:
        SPRING.ZIPKIN.BASEURL:  http://zipkin:9411/
        EUREKA.CLIENT.SERVICEURL.DEFAULTZONE:  http://namingserver:8761/eureka
-       SPRING.DATASOURCE.URL: jdbc:postgresql://locahost:5430/book_service 
-       SPRING.FLYWAY.URL: jdbc:postgresql://locahost:5430/book_service 
+       SPRING.DATASOURCE.URL: jdbc:postgresql://book-db:5432/book_service 
+       SPRING.FLYWAY.URL: jdbc:postgresql://book-db:5432/book_service 
        SPRING.DATASOURCE.USERNAME: postgres 
        SPRING.DATASOURCE.PASSWORD: password
        SPRING.FLYWAY.USER: postgres 
@@ -93,7 +93,6 @@ services:
       - 9411:9411
     networks:
       - joao-network  
-
 
 networks:
   joao-network:
