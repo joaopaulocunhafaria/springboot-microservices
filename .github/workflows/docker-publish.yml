@@ -32,16 +32,19 @@ jobs:
     
    
       - name: Build Api Gateway Docker Container 
-        working-directory: ./course/api-gateway
-        run: mvn spring-boot:build-image -DskipTests  
+        run: |
+          cd api-gateway
+          mvn spring-boot:build-image -DskipTests 
       
       - name: Build Book Microservice Docker Container 
-        working-directory: ./course/bookservice
-        run: mvn spring-boot:build-image -DskipTests
- 
+        run: |
+          cd bookservice
+          mvn spring-boot:build-image -DskipTests 
+      
       - name: Build Cambio Microservice Docker Container 
-        working-directory: ./course/cambioservice
-        run: mvn spring-boot:build-image -DskipTests
+        run: |
+          cd cambioservice
+          mvn spring-boot:build-image -DskipTests 
       
       - name: Docker Compose Build 
         working-directory: ./course
