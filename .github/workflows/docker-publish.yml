@@ -61,12 +61,20 @@ jobs:
      
       - name: Push Docker Hub Container Registry
         run: |
-          docker tag  ${{ secrets.DOCKER_HUB_USER}}/namingserver:0.0.1-SNAPSHOT  ${{ secrets.DOCKER_HUB_USER}}/namingserver: ${{ github.run_id}}
-          docker tag  ${{ secrets.DOCKER_HUB_USER}}/bookservice:0.0.1-SNAPSHOT   ${{ secrets.DOCKER_HUB_USER}}/bookservice: ${{ github.run_id}}
-          docker tag  ${{ secrets.DOCKER_HUB_USER}}/cambioservice:0.0.1-SNAPSHOT  ${{ secrets.DOCKER_HUB_USER}}/cambioservice: ${{ github.run_id}}
-          docker tag  ${{ secrets.DOCKER_HUB_USER}}/api-gateway:0.0.1-SNAPSHOT  ${{ secrets.DOCKER_HUB_USER}}/api-gateway : ${{ github.run_id}}
-          docker push  ${{ secrets.DOCKER_HUB_USER}}/namingserver: ${{ github.run_id}}
-          docker push ${{ secrets.DOCKER_HUB_USER}}/bookservice: ${{ github.run_id}}
-          docker push ${{ secrets.DOCKER_HUB_USER}}/cambioservice: ${{ github.run_id}}
-          docker push  ${{ secrets.DOCKER_HUB_USER}}/api-gateway : ${{ github.run_id}}
+          docker tag  ${{ secrets.DOCKER_HUB_USER}}/namingserver:0.0.1-SNAPSHOT  ${{ secrets.DOCKER_HUB_USER}}/namingserver:${{ github.run_id}}
+          docker tag  ${{ secrets.DOCKER_HUB_USER}}/namingserver:0.0.1-SNAPSHOT  ${{ secrets.DOCKER_HUB_USER}}/namingserver:latest
+          docker tag  ${{ secrets.DOCKER_HUB_USER}}/bookservice:0.0.1-SNAPSHOT   ${{ secrets.DOCKER_HUB_USER}}/bookservice:${{ github.run_id}}
+          docker tag  ${{ secrets.DOCKER_HUB_USER}}/bookservice:0.0.1-SNAPSHOT   ${{ secrets.DOCKER_HUB_USER}}/bookservice:latest
+          docker tag  ${{ secrets.DOCKER_HUB_USER}}/cambioservice:0.0.1-SNAPSHOT  ${{ secrets.DOCKER_HUB_USER}}/cambioservice:${{ github.run_id}}
+          docker tag  ${{ secrets.DOCKER_HUB_USER}}/cambioservice:0.0.1-SNAPSHOT  ${{ secrets.DOCKER_HUB_USER}}/cambioservice:latest
+          docker tag  ${{ secrets.DOCKER_HUB_USER}}/api-gateway:0.0.1-SNAPSHOT  ${{ secrets.DOCKER_HUB_USER}}/api-gateway:${{ github.run_id}}
+          docker tag  ${{ secrets.DOCKER_HUB_USER}}/api-gateway:0.0.1-SNAPSHOT  ${{ secrets.DOCKER_HUB_USER}}/api-gateway:latest
+          docker push  ${{ secrets.DOCKER_HUB_USER}}/namingserver:${{ github.run_id}}
+          docker push ${{ secrets.DOCKER_HUB_USER}}/bookservice:${{ github.run_id}}
+          docker push ${{ secrets.DOCKER_HUB_USER}}/cambioservice:${{ github.run_id}}
+          docker push  ${{ secrets.DOCKER_HUB_USER}}/api-gateway:${{ github.run_id}}
+          docker push  ${{ secrets.DOCKER_HUB_USER}}/namingserver:latest
+          docker push ${{ secrets.DOCKER_HUB_USER}}/bookservice:latest
+          docker push ${{ secrets.DOCKER_HUB_USER}}/cambioservice:latest
+          docker push  ${{ secrets.DOCKER_HUB_USER}}/api-gateway:latest
  
