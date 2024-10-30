@@ -33,17 +33,17 @@ jobs:
    
       - name: Build Book Microservice Docker Container 
         run: |
-          cd bookservice
+          cd course/bookservice
           mvn spring-boot:build-image -DskipTests 
       
       - name: Build Api Gateway Docker Container 
         run: |
-          cd api-gateway
+          cd course/api-gateway
           mvn spring-boot:build-image -DskipTests 
       
       - name: Build Cambio Microservice Docker Container 
         run: |
-          cd cambioservice
+          cd course/cambioservice
           mvn spring-boot:build-image -DskipTests 
       
       - name: Docker Compose Build 
