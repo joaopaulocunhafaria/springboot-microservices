@@ -1,5 +1,5 @@
 [![Docker Coutinus Integration with Github](https://github.com/joaopaulocunhafaria/springboot-microservices/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/joaopaulocunhafaria/springboot-microservices/actions/workflows/docker-publish.yml)
-<h1 align="center">Implementação do Projeto do Curso de Microsserviços com Spring Boot</h1>
+<h1 align="center">Implementação de Projeto com Arquitetura de Microsserviços com Spring Boot</h1>
 <h2 align="center">Tecnologias Utilizadas</h2>
 <div style="display: flex; justify-content: center;">
     <img src="https://github.com/joaopaulocunhafaria/springboot-microservices/assets/138056835/7f997164-4fe3-40f4-ad6a-8f68bb91df2f" height="80px" alt="Java">
