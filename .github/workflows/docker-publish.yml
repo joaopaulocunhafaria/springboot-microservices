@@ -32,9 +32,8 @@ jobs:
     
    
       - name: Build Book Microservice Docker Container 
-        run: |
-          cd course/bookservice
-          mvn spring-boot:build-image -DskipTests 
+        working-directory: course/bookservice
+        run: mvn spring-boot:build-image -DskipTests 
       
       - name: Build Api Gateway Docker Container 
         run: |
