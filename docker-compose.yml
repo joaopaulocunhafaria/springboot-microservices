@@ -3,14 +3,14 @@ version: '3.9'
 services:
   
   namingserver:
-    image: joaopaulocunhafaria/namingserver:0.0.1-SNAPSHOT
+    image: joaopaulocunhafaria/namingserver:latest
     ports:
       - 8761:8761
     networks:
       - joao-network
 
   api-gateway:
-    image: joaopaulocunhafaria/api-gateway:0.0.1-SNAPSHOT
+    image: joaopaulocunhafaria/api-gateway:latest
     ports:
       - 8765:8765
     depends_on: 
@@ -22,7 +22,7 @@ services:
       - joao-network 
      
   cambio-service:
-    image: joaopaulocunhafaria/cambioservice:0.0.1-SNAPSHOT
+    image: joaopaulocunhafaria/cambioservice:latest
     ports:
       - 8000:8000
     depends_on: 
@@ -43,7 +43,7 @@ services:
   
   
   book-service:
-    image: joaopaulocunhafaria/bookservice:0.0.1-SNAPSHOT
+    image: joaopaulocunhafaria/bookservice:latest
     ports:
       - 8100:8100
     depends_on: 
