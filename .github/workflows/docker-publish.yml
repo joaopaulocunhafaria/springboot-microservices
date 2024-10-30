@@ -30,7 +30,12 @@ jobs:
            java-version: 17
            distribution: temurin
     
-   
+    
+      - name: Build NamingServer Microservice Docker Container 
+        run: |
+          cd namingserver
+          mvn spring-boot:build-image -DskipTests 
+      
       - name: Build Book Microservice Docker Container 
         run: |
           cd bookservice
@@ -38,12 +43,12 @@ jobs:
       
       - name: Build Api Gateway Docker Container 
         run: |
-          cd course/api-gateway
+          cd api-gateway
           mvn spring-boot:build-image -DskipTests 
       
       - name: Build Cambio Microservice Docker Container 
         run: |
-          cd course/cambioservice
+          cd cambioservice
           mvn spring-boot:build-image -DskipTests 
       
       - name: Docker Compose Build 
