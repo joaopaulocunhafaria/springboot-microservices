@@ -16,7 +16,7 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    
     steps:
       - name: Login into DockerHub
         uses: docker/login-action@v3.3.0
@@ -28,23 +28,22 @@ jobs:
         uses: actions/setup-java@v4.5.0
         with:
            java-version: 17
-           distribution: adopt
+           distribution: temurin
     
-      - name: Build Naming Server Docker Container 
-        working-directory: ./course/namingserver
-        run: mvn spring-boot:build-image -DskipTests
+   
+      - name: Build Book Microservice Docker Container 
+        working-directory: ./bookservice
+        run: mvn spring-boot:build-image -DskipTests 
       
       - name: Build Api Gateway Docker Container 
-        working-directory: ./course/api-gateway
-        run: mvn spring-boot:build-image -DskipTests
+        run: |
+          cd course/api-gateway
+          mvn spring-boot:build-image -DskipTests 
       
-      - name: Build Book Microservice Docker Container 
-        working-directory: ./course/bookservice
-        run: mvn spring-boot:build-image -DskipTests
- 
       - name: Build Cambio Microservice Docker Container 
-        working-directory: ./course/cambioservice
-        run: mvn spring-boot:build-image -DskipTests
+        run: |
+          cd course/cambioservice
+          mvn spring-boot:build-image -DskipTests 
       
       - name: Docker Compose Build 
         working-directory: ./course
