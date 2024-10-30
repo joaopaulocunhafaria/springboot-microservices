@@ -31,14 +31,14 @@ jobs:
            distribution: temurin
     
    
-      - name: Build Api Gateway Docker Container 
-        run: |
-          cd api-gateway
-          mvn spring-boot:build-image -DskipTests 
-      
       - name: Build Book Microservice Docker Container 
         run: |
           cd bookservice
+          mvn spring-boot:build-image -DskipTests 
+      
+      - name: Build Api Gateway Docker Container 
+        run: |
+          cd api-gateway
           mvn spring-boot:build-image -DskipTests 
       
       - name: Build Cambio Microservice Docker Container 
