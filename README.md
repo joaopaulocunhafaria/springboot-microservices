@@ -1,4 +1,4 @@
-[![Docker Coutinus Integration with Github](https://github.com/joaopaulocunhafaria/springboot-microservices/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/joaopaulocunhafaria/springboot-microservices/actions/workflows/docker-publish.yml)
+[![Docker Continuous Integration with Github](https://github.com/joaopaulocunhafaria/springboot-microservices/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/joaopaulocunhafaria/springboot-microservices/actions/workflows/docker-publish.yml)
 <h1 align="center">Implementação de Projeto com Arquitetura de Microsserviços com Spring Boot</h1>
 <h2 align="center">Tecnologias Utilizadas</h2>
 <div style="display: flex; justify-content: center;">
