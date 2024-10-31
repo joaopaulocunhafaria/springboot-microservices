@@ -31,4 +31,5 @@
     <li>Implementação de padrões de resiliência com Resilience4j, como Circuit Breaker, Retry, Rate Limiter, Bulkhead e TimeLimiter.</li>
     <li>Documentação dos microsserviços com SpringDoc OpenAPI, integrada com o API Gateway.</li>
     <li>Containerização das aplicações com Docker para facilitar o deploy e o gerenciamento das instâncias em diferentes ambientes.</li>
+    <li>Entrega contínua com Git Hub actions integrada ao Docker Hub, para build e post automatizado das imagens Docker.</li>
 </ul>
