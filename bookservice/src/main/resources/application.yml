@@ -5,13 +5,44 @@ eureka:
     service-url: 
       defaultZone:  http://localhost:8761/eureka
 resilience4j:
-  retry:
+ retry:
     instances:
-      foobar : 
-        max-attempts: 10
-      findbook: 
+      findbook:
         max-attempts: 5
         wait-duration: 2s 
+
+ circuitbreaker:
+    instances:
+      findbook:
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+        slidingWindowSize: 100
+        permittedNumberOfCallsInHalfOpenState: 10
+        minimumNumberOfCalls: 10
+        recordExceptions:
+          - java.io.IOException
+          - java.net.SocketTimeoutException
+
+ ratelimiter:
+    instances:
+      findbook:
+        limitForPeriod: 10
+        limitRefreshPeriod: 1s
+        timeoutDuration: 500ms
+
+ bulkhead:
+    instances:
+      findbook:
+        max-concurrent-calls: 10
+        max-wait-duration: 500ms 
+
+ timelimiter:
+    instances:
+      findbook:
+        timeout-duration: 3s
+
+ metrics:
+    enable: true
 
 spring: 
   cloud:

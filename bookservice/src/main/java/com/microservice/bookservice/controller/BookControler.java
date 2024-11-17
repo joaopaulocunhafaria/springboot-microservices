@@ -15,8 +15,11 @@ import com.microservice.bookservice.proxy.CambioProxy;
 import com.microservice.bookservice.repository.BookRepository;
 import com.microservice.bookservice.response.Cambio;
 
+import io.github.resilience4j.bulkhead.annotation.Bulkhead;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
+import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
@@ -42,6 +45,9 @@ public class BookControler {
     @GetMapping(value = "/{id}/{currency}")
     @Retry(name = "findbook", fallbackMethod = "returnDefaultBook")
     @CircuitBreaker(name = "findbook", fallbackMethod = "returnDefaultBook")
+    @RateLimiter(name = "findbook", fallbackMethod = "returnDefaultBook")
+    @Bulkhead(name = "findbook", fallbackMethod = "returnDefaultBook")
+    @TimeLimiter(name = "findbook", fallbackMethod = "returnDefaultBook")
     public Book findBook(
             @PathVariable("id") Long id,
             @PathVariable("currency") String currency) {
